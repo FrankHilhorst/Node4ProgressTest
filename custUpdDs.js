@@ -2,25 +2,27 @@
  * New node file
  */
 var node4progress = require("node4progressHttp")(null);
-node4progress.setAppsvrProc("Examples/CustUpd.p","",false,true);
+node4progress.setAppsvrProc("Examples/CustUpdDs.p","",false,true);
 node4progress.setParameter("Imode","character","input","GetCustomer","");
-node4progress.setParameter("iInputParameters","character","input","cust-num=1200","");
-node4progress.setParameter("dsCustomer","dataset-handle","input-output","","examples/CustUpd-SchemaProvider.p");
+node4progress.setParameter("iInputParameters","character","input","cust-num=1136","");
+node4progress.setParameter("dsCustomer","dataset-handle","input-output","","examples/CustUpdDs-SchemaProvider.p");
 node4progress.setParameter("oOutputPars","character","output","","");
 node4progress.setParameter("ErrMsg","character","output","","");
 node4progress.invoke(function(err,result){
-	/*
+	
 	var newName = "Rob Hilhorst";
 	var newAddress = "30 Belgradostraat";
 	var newCity = "Hengelo";
+	var newState = "FL";
 	var newCountry = "Netherkands";
-    */
+    
+	/*
 	var newName = "Frank Hilhorst";
 	var newAddress = "1567 Leisure Lane";
 	var newCity = "Port Saint Lucie";
 	var newState = "FL";
 	var newCountry = "USA";
-	
+	*/
 	var dsCust = node4progress.getDataset("dsCustomer",result);
 	var ttCustomer = dsCust.$("ttCustomer");
 	var ttCustBuf = ttCustomer.findFirst();
@@ -47,10 +49,10 @@ node4progress.invoke(function(err,result){
 				 "Country : " + ttCustBuf.$("Country").$("screenValue")	+ "\n";
 	
 	console.log(displayMsg);
-	node4progress.setAppsvrProc("Examples/CustUpd.p","",false,true);
+	node4progress.setAppsvrProc("Examples/CustUpdDs.p","",false,true);
 	node4progress.setParameter("Imode","character","input","UPDATE","");
 	node4progress.setParameter("iInputParameters","character","input","","");
-	node4progress.setParameter("dsCustomer","dataset-handle","input-output",dsCust.writeJson(),"examples/CustUpd-SchemaProvider.p");
+	node4progress.setParameter("dsCustomer","dataset-handle","input-output",dsCust.writeJson(),"examples/CustUpdDs-SchemaProvider.p");
 	node4progress.setParameter("oOutputPars","character","output","","");
 	node4progress.setParameter("ErrMsg","character","output","","");
 	node4progress.invoke(function(err,result){
